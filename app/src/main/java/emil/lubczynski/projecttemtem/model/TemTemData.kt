@@ -9,7 +9,7 @@ data class TemTem(
     @SerializedName("name")
     val TemTemName: String?,
 
-    @SerializedName("portraitWikiUrl")
+    @SerializedName("icon")
     val TemTemImage: String?
 
 )

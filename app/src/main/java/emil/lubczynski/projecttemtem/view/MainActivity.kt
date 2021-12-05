@@ -1,5 +1,6 @@
 package emil.lubczynski.projecttemtem.view
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -7,12 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import emil.lubczynski.projecttemtem.R
 import emil.lubczynski.projecttemtem.model.TemTem
 import emil.lubczynski.projecttemtem.viewmodel.ListViewModel
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,10 +29,20 @@ class MainActivity : AppCompatActivity() {
 
  //   activity_Main is set to be a swipeRefreshLayout
     override fun onCreate(savedInstanceState: Bundle?) {
+
+     if (Build.VERSION.SDK_INT > 9) {
+         val policy = ThreadPolicy.Builder().permitAll().build()
+         StrictMode.setThreadPolicy(policy)
+     }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        temtemList = this.findViewById(R.id.temtemList)
-//        temtemList.setAdapter(temtemAdapter)
+        temtemList = this.findViewById(R.id.temtemList)
+        temtemList.setAdapter(temtemAdapter)
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+        loading_view = findViewById(R.id.loading_view)
+        listError= findViewById(R.id.listError)
+
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java) //instantiating viewmodel
         viewModel.refresh()
 

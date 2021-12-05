@@ -14,4 +14,5 @@ class TemTemService {
     {
         return api.getTemTems()
     }
+
 }
