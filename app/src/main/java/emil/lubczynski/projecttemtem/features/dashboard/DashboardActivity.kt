@@ -11,14 +11,12 @@ import emil.lubczynski.projecttemtem.viewmodel.ListViewModel
 import emil.lubczynski.projecttemtem.databinding.ActivityMainBinding
 
 
-
-
 class DashboardActivity : AppCompatActivity() {
-    private lateinit var _binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     lateinit var viewModel: ListViewModel
-    private val binding get() = _binding!!
+
     //example of KOIN injection
-   //private val viewModel: ListViewModel by Inject()
+    //private val viewModel: ListViewModel by Inject()
 
 
     private val temtemAdapter = TemTemListAdapter(arrayListOf())
@@ -27,15 +25,15 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(_binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        _binding.temtemList.adapter = temtemAdapter
+        binding.temtemList.adapter = temtemAdapter
         viewModel = ViewModelProvider(this)[ListViewModel::class.java] //instantiating viewmodel
         viewModel.refresh()
 
         //"with" allows me to get rid of binding. in multiple occurrences
-        with(_binding) {
+        with(binding) {
             temtemList.apply {
                 this.layoutManager = LinearLayoutManager(context)
                 adapter = temtemAdapter
@@ -54,25 +52,24 @@ class DashboardActivity : AppCompatActivity() {
     {
 
         viewModel.temtem.observe(this, Observer { temtems: List<TemTem> ->
-            _binding.temtemList.visibility = View.VISIBLE
-            temtems?.let { temtemAdapter.updateTemTems(it) } // if countries is not null then countries will be passed as a variable "it" and we can access it
+            binding.temtemList.visibility = View.VISIBLE
+            temtems.let { temtemAdapter.updateTemTems(it) } // if countries is not null then countries will be passed as a variable "it" and we can access it
         })
 
         viewModel.temtemLoadError.observe(this, Observer { isError: Boolean? ->
-            isError?.let { _binding.listError.visibility = if (it) View.VISIBLE else View.GONE }
+            isError?.let { binding.listError.visibility = if (it) View.VISIBLE else View.GONE }
         })
 
         viewModel.loading.observe(this, Observer { isLoading: Boolean? ->
             isLoading?.let {
-                _binding.loadingView.visibility = if (it) View.VISIBLE else View.GONE
+                binding.loadingView.visibility = if (it) View.VISIBLE else View.GONE
                 if (it) { //displaying only the loader and nothing else while it loads
-                    _binding.listError.visibility = View.GONE
-                    _binding.temtemList.visibility = View.GONE
+                    binding.listError.visibility = View.GONE
+                    binding.temtemList.visibility = View.GONE
                 }
             }
         })
     }
-
 
 
 }

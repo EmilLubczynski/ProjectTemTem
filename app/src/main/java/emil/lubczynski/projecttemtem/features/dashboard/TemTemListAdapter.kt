@@ -37,9 +37,9 @@ class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
     override fun getItemCount() = temtems.size
 
     class TemTemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //need to tidy this BASE_URL up
-        private val itemBind = ItemTemtemBinding.bind(view)
 
+        private val itemBind = ItemTemtemBinding.bind(view)
+        //need to tidy this BASE_URL up
         private val BASE_URL_ICON = "https://temtem-api.mael.tech/"
         private var temtemTypeList: List<Int> = ArrayList()
         private val progressDrawable = getProgressDrawable(view.context)
