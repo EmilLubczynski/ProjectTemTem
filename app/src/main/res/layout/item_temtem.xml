@@ -5,20 +5,20 @@
     android:layout_height="@dimen/layout_height"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/item_temtem_gradient"
-    tools:viewBindingIgnore="true"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="4dp"
+    android:id="@+id/item_temtem"
     >
 
     <ImageView
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:radius="4dp"
+        android:radius="@dimen/item_tem_tem_corners"
         android:id="@+id/imageView"
         android:padding="@dimen/standard_padding"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:gravity="clip_horizontal"
@@ -26,22 +26,22 @@
 
         <TextView
             android:id="@+id/temtemNumberText"
-            style="@style/Title"
+            style="@style/basic_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="TemTem # : "
+            android:layout_marginStart="@dimen/standard_padding"
+            android:layout_marginTop="@dimen/standard_padding"
+            android:text="@string/temtem_number_title"
             android:textColor="@color/cardview_light_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/temtemNumber"
-            style="@style/Title"
+            style="@style/basic_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TemTemNumber"
+            tools:text="@string/temtem_number"
             android:textColor="@color/cardview_light_background"
             app:layout_constraintBottom_toBottomOf="@+id/temtemNumberText"
             app:layout_constraintStart_toEndOf="@+id/temtemNumberText"
@@ -49,28 +49,38 @@
 
 
         <TextView
-            android:id="@+id/temtemNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Name : "
-            android:textColor="@color/cardview_light_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temtemNumberText" />
-
-        <TextView
             android:id="@+id/temtemName"
+            style="@style/temtem_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TemTemName"
             android:textColor="@color/cardview_light_background"
-            app:layout_constraintBottom_toBottomOf="@+id/temtemNameText"
-            app:layout_constraintStart_toEndOf="@+id/temtemNameText"
-            app:layout_constraintTop_toTopOf="@+id/temtemNameText" />
+            app:layout_constraintEnd_toEndOf="@+id/temtemNumber"
+            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintStart_toStartOf="@+id/temtemNumberText"
+            app:layout_constraintTop_toBottomOf="@+id/temtemNumber"
+            tools:text="TemTemName" />
+
+        <ImageView
+            android:id="@+id/temtemType1"
+            style="@style/basic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temtem_type"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toStartOf="@+id/temtemName"
+            app:layout_constraintTop_toBottomOf="@+id/temtemName" />
+
+        <ImageView
+            android:id="@+id/temtemType2"
+            style="@style/basic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temtem_type"
+            android:textColor="@color/cardview_light_background"
+            app:layout_constraintStart_toEndOf="@+id/temtemType1"
+            app:layout_constraintTop_toBottomOf="@+id/temtemName" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    >
 
 </LinearLayout>

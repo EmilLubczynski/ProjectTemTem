@@ -2,12 +2,12 @@
 <resources>
 
 
-    <style name="Title">
+    <style name="temtem_name">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text">
+    <style name="basic_text">
         <item name="android:textSize">14sp</item>
     </style>
 

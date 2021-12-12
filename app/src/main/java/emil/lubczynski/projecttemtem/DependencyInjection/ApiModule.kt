@@ -10,10 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class ApiModule {
-private val BASE_URL = "https://temtem-api.mael.tech/"
+    private val BASE_URL = "https://temtem-api.mael.tech/"
+
     @Provides
-    fun provideTemTemApi(): TemTemApi
-    {
+    fun provideTemTemApi(): TemTemApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -21,9 +21,9 @@ private val BASE_URL = "https://temtem-api.mael.tech/"
             .build()
             .create(TemTemApi::class.java)
     }
+
     @Provides
-    fun provideTemTemService(): TemTemService
-    {
+    fun provideTemTemService(): TemTemService {
         return TemTemService()
     }
 

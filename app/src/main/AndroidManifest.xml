@@ -16,7 +16,7 @@
         android:appComponentFactory="androidx"
         >
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".features.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

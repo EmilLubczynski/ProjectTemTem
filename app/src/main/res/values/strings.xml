@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ProjectTemTem</string>
     <string name="Error_Text">An Error Occured While Loading the Data.</string>
+    <string name="temtem_type">Type</string>
+    <string name="temtem_number">TemTemNumber</string>
+    <string name="temtem_number_title">#</string>
 </resources>

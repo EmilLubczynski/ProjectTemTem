@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="navy_light">#2c5364</color>
-    <color name="navy_medium">#203a43</color>
-    <color name="navy_dark">#0f2027</color>
+    <!--   Header + ItemTemTem Colors-->
+<!--    <color name="navy_light">#2c5364</color>-->
+<!--    <color name="navy_medium">#203a43</color>-->
+<!--    <color name="navy_dark">#0f2027</color>-->
+    <color name="navy_light">#ca9262</color>
+    <color name="navy_medium">#a78168</color>
+    <color name="navy_dark">#7e6661</color>
+    <!-- Secondary brand color. -->
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!-- Common colours-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Background Colours-->
+    <color name="main_bacground_dark_grey">#30233b</color>
+    <color name="main_bacground_light_grey">#412d44</color>
+
 </resources>
 

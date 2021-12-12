@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.ProjectTemTem" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/navy_light</item>
-        <item name="colorPrimaryVariant">@color/navy_dark</item>
+        <item name="colorPrimary">@color/main_bacground_dark_grey</item>
+        <item name="colorPrimaryVariant">@color/main_bacground_light_grey</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
