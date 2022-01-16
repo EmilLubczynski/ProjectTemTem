@@ -1,17 +1,18 @@
-package emil.lubczynski.projecttemtem.DependencyInjection
+package gamerworld.projecttemtem.DependencyInjection
+
 
 import dagger.Module
 import dagger.Provides
-import emil.lubczynski.projecttemtem.model.TemTemApi
-import emil.lubczynski.projecttemtem.model.TemTemService
+import gamerworld.projecttemtem.model.TemTemApi
+import gamerworld.projecttemtem.model.TemTemService
+import gamerworld.projecttemtem.util.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 @Module
 class ApiModule {
-    private val BASE_URL = "https://temtem-api.mael.tech/"
-
     @Provides
     fun provideTemTemApi(): TemTemApi {
         return Retrofit.Builder()

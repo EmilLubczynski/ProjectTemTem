@@ -1,18 +1,15 @@
-package emil.lubczynski.projecttemtem.features.dashboard
+package gamerworld.projecttemtem.features.dashboard
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.RecyclerView
-import emil.lubczynski.projecttemtem.model.TemTem
-import emil.lubczynski.projecttemtem.R
-import emil.lubczynski.projecttemtem.databinding.ItemTemtemBinding
-import emil.lubczynski.projecttemtem.util.getProgressDrawable
-import emil.lubczynski.projecttemtem.util.loadImage
-import kotlinx.android.synthetic.*
-
-import kotlin.with as with
+import gamerworld.projecttemtem.R
+import gamerworld.projecttemtem.databinding.ItemTemtemBinding
+import gamerworld.projecttemtem.model.TemTem
+import gamerworld.projecttemtem.util.BASE_URL
+import gamerworld.projecttemtem.util.getProgressDrawable
+import gamerworld.projecttemtem.util.loadImage
 
 class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
     RecyclerView.Adapter<TemTemListAdapter.TemTemViewHolder>() {
@@ -37,22 +34,19 @@ class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
     override fun getItemCount() = temtems.size
 
     class TemTemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         private val itemBind = ItemTemtemBinding.bind(view)
-        //need to tidy this BASE_URL up
-        private val BASE_URL_ICON = "https://temtem-api.mael.tech/"
         private var temtemTypeList: List<Int> = ArrayList()
         private val progressDrawable = getProgressDrawable(view.context)
 
         fun bind(temtem: TemTem) {
             with(itemBind) {
-                temtemNumber.text = temtem.TemTemNumber
-                temtemName.text = temtem.TemTemName
+                temtemNumber.text = temtem.number
+                temtemName.text = temtem.name
                 imageView.loadImage(
-                    BASE_URL_ICON + temtem.TemTemImage,
+                    BASE_URL + temtem.icon,
                     progressDrawable
                 )
-                temtemTypeList = temtemTypeImage(temtem.TemTemType)
+                temtemTypeList = temtemTypeImage(temtem.types)
 
                 if (temtemTypeList.size > 1) {
                     temtemType1.setImageResource(temtemTypeList[0])

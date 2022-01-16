@@ -1,11 +1,13 @@
-package emil.lubczynski.projecttemtem.util
+package gamerworld.projecttemtem.util
 
 import android.content.Context
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import emil.lubczynski.projecttemtem.R
+import gamerworld.projecttemtem.R
+
+const val BASE_URL = "https://temtem-api.mael.tech/"
 
 fun getProgressDrawable(context: Context): CircularProgressDrawable {
 //creates a spinner

@@ -1,4 +1,4 @@
-package emil.lubczynski.projecttemtem.features.dashboard
+package gamerworld.projecttemtem.features.dashboard
 
 import android.os.Bundle
 import android.view.View
@@ -6,18 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import emil.lubczynski.projecttemtem.model.TemTem
-import emil.lubczynski.projecttemtem.viewmodel.ListViewModel
-import emil.lubczynski.projecttemtem.databinding.ActivityMainBinding
+import gamerworld.projecttemtem.databinding.ActivityMainBinding
+import gamerworld.projecttemtem.model.TemTem
+import gamerworld.projecttemtem.viewmodel.ListViewModel
 
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var viewModel: ListViewModel
-
-    //example of KOIN injection
-    //private val viewModel: ListViewModel by Inject()
-
 
     private val temtemAdapter = TemTemListAdapter(arrayListOf())
 
@@ -43,8 +39,6 @@ class DashboardActivity : AppCompatActivity() {
                 viewModel.refresh()
             }
         }
-
-
         observeViewModel()
     }
 

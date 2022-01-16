@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="emil.lubczynski.projecttemtem">
+    package="gamerworld.projecttemtem">
 
     <application
         tools:replace="android:appComponentFactory"
@@ -16,7 +16,7 @@
         android:appComponentFactory="androidx"
         >
 
-        <activity android:name=".features.dashboard.DashboardActivity">
+        <activity android:name="gamerworld.projecttemtem.features.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
