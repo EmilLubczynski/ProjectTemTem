@@ -4,32 +4,37 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import gamerworld.projecttemtem.databinding.ActivityMainBinding
 import gamerworld.projecttemtem.model.TemTem
 import gamerworld.projecttemtem.viewmodel.ListViewModel
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DashboardActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    lateinit var viewModel: ListViewModel
 
-    private val temtemAdapter = TemTemListAdapter(arrayListOf())
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+    val viewModel by viewModel<ListViewModel>()
+    private var temtemAdapter = TemTemListAdapter(arrayListOf())
 
     //   activity_Main is set to be a swipeRefreshLayout
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        setupView()
+        setupViewModel()
         setContentView(binding.root)
+    }
 
-        binding.temtemList.adapter = temtemAdapter
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java] //instantiating viewmodel
+    private fun setupView() {
         viewModel.refresh()
+        setupTemTemListView()
+    }
 
+    private fun setupTemTemListView() {
         //"with" allows me to get rid of binding. in multiple occurrences
         with(binding) {
+            temtemList.adapter = temtemAdapter
             temtemList.apply {
                 this.layoutManager = LinearLayoutManager(context)
                 adapter = temtemAdapter
@@ -38,16 +43,15 @@ class DashboardActivity : AppCompatActivity() {
                 swipeRefreshLayout.isRefreshing = false
                 viewModel.refresh()
             }
+
         }
-        observeViewModel()
     }
 
-    private fun observeViewModel() // observer connects to val countries = MutableLiveData<List<Country>>() variable in ListViewModel which when updated will notify anyone connected to the variable.
+    private fun setupViewModel() // observer connects to val TemTem = MutableLiveData<List<TemTem>>() variable in ListViewModel which when updated will notify anyone connected to the variable.
     {
-
-        viewModel.temtem.observe(this, Observer { temtems: List<TemTem> ->
+        viewModel.temtems.observe(this, Observer { temtems: List<TemTem> ->
             binding.temtemList.visibility = View.VISIBLE
-            temtems.let { temtemAdapter.updateTemTems(it) } // if countries is not null then countries will be passed as a variable "it" and we can access it
+            temtems.let { temtemAdapter.updateTemTems(it) } // if temTems is not null then temtem will be passed as a variable "it" and we can access it
         })
 
         viewModel.temtemLoadError.observe(this, Observer { isError: Boolean? ->
@@ -64,6 +68,6 @@ class DashboardActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }
+
+

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_temtem"
+    android:id="@+id/itemTemtem"
     android:layout_width="match_parent"
     android:layout_height="@dimen/layout_height"
     android:layout_marginBottom="4dp"
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:padding="@dimen/standard_padding"
-        android:radius="@dimen/item_tem_tem_corners" />
+        android:radius="@dimen/item_temtem_corners" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/zero_dp"

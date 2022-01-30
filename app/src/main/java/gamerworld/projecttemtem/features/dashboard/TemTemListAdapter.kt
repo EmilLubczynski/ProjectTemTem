@@ -1,5 +1,6 @@
 package gamerworld.projecttemtem.features.dashboard
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,13 @@ import gamerworld.projecttemtem.model.TemTem
 import gamerworld.projecttemtem.util.BASE_URL
 import gamerworld.projecttemtem.util.getProgressDrawable
 import gamerworld.projecttemtem.util.loadImage
+import gamerworld.projecttemtem.features.temtem_information.TemTemDataActivity
+import gamerworld.projecttemtem.features.temtem_information.TemTemDataActivity.Companion.TEM_TEM_KEY
 
-class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
+class TemTemListAdapter(private val temtems: ArrayList<TemTem>) :
     RecyclerView.Adapter<TemTemListAdapter.TemTemViewHolder>() {
+
+
 
     fun updateTemTems(newTemTems: List<TemTem>) {
         temtems.clear()
@@ -29,6 +34,7 @@ class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
 
     override fun onBindViewHolder(holder: TemTemViewHolder, position: Int) {
         holder.bind(temtems[position])
+
     }
 
     override fun getItemCount() = temtems.size
@@ -38,11 +44,14 @@ class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
         private var temtemTypeList: List<Int> = ArrayList()
         private val progressDrawable = getProgressDrawable(view.context)
 
+
         fun bind(temtem: TemTem) {
             with(itemBind) {
+
                 temtemNumber.text = temtem.number
                 temtemName.text = temtem.name
                 imageView.loadImage(
+                    //progress drawable will be a spinner that shows up while image is loading for user
                     BASE_URL + temtem.icon,
                     progressDrawable
                 )
@@ -55,8 +64,15 @@ class TemTemListAdapter(var temtems: ArrayList<TemTem>) :
                     temtemType1.setImageResource(temtemTypeList[0])
                     temtemType2.setImageDrawable(null)
                 }
-                //progress drawable will be a spinner that shows up while image is loading for user
+
+                itemTemtem.setOnClickListener { view ->
+                    val intent = Intent(view.context, TemTemDataActivity::class.java)
+                    intent.putExtra(TEM_TEM_KEY, temtem)
+                    view.context.startActivity(intent)
+                }
             }
+
+
             temtemTypeList = ArrayList()
         }
 

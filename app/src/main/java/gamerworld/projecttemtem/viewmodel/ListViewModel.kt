@@ -2,27 +2,18 @@ package gamerworld.projecttemtem.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import gamerworld.projecttemtem.DependencyInjection.DaggerApiComponent
 import gamerworld.projecttemtem.model.TemTem
-import gamerworld.projecttemtem.model.TemTemService
+import gamerworld.projecttemtem.model.TemTemRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class ListViewModel : ViewModel() {
-
-    @Inject
-    lateinit var temtemService: TemTemService
-
-    init {
-        DaggerApiComponent.create().inject(this)
-    }
+class ListViewModel(private val repository: TemTemRepository) : ViewModel() {
 
     private val disposable = CompositeDisposable() //clears connections
 
-    val temtem = MutableLiveData<List<TemTem>>()
+    val temtems = MutableLiveData<List<TemTem>>()
     val temtemLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -33,12 +24,12 @@ class ListViewModel : ViewModel() {
     private fun fetchTemTems() {
         loading.value = true
         disposable.add(
-            temtemService.getTemTems()
+            repository.getTemTems()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<TemTem>>() {
                     override fun onSuccess(value: List<TemTem>?) {
-                        temtem.value = value
+                        temtems.value = value
                         temtemLoadError.value = false
                         loading.value = false
                     }
@@ -51,7 +42,6 @@ class ListViewModel : ViewModel() {
                 })
         )
     }
-
 
     override fun onCleared() {
         super.onCleared()

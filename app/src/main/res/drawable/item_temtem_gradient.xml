@@ -9,7 +9,7 @@
         android:type="linear" />
 
     <corners
-        android:radius="@dimen/item_tem_tem_corners"/>
+        android:radius="@dimen/item_temtem_corners"/>
 
 
 </shape>

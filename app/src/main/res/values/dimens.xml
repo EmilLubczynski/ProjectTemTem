@@ -4,5 +4,9 @@
     <dimen name="standard_padding">8dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
 
-    <dimen name="item_tem_tem_corners">4dp</dimen>
+    <dimen name="item_temtem_corners">4dp</dimen>
+
+    <dimen name="temtem_data_header">150dp</dimen>
+    <dimen name="temtem_data_image_size">150dp</dimen>
+
 </resources>
